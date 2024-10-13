@@ -10,7 +10,6 @@ import { useProducts } from "@/hooks/use-products";
 import FeaturedCollections from "@/components/featured-collections";
 import NewsletterSection from "@/components/news-letter";
 import CardSkeleton from "@/components/card-skeleton";
-import { useSession } from "next-auth/react";
 import Footer from "@/components/globals/footer";
 import Header from "@/components/globals/header";
 
