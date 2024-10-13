@@ -1,14 +1,13 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import Link from 'next/link'
-import { ShoppingCart, User, Menu, Sun, Moon } from 'lucide-react'
+import { ShoppingCart, User, Menu,} from 'lucide-react'
 import { signOut, useSession } from 'next-auth/react'
 import { useQuery } from '@apollo/client'
 import { GET_CART } from '@/graphql/queries/cart.query'
 import { Button } from '@/components/ui/button'
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet'
-import { useTheme } from 'next-themes'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -19,10 +18,6 @@ import {
 const Header = () => {
   const { data: session } = useSession()
   const [isOpen, setIsOpen] = useState(false)
-  const { setTheme, theme } = useTheme()
-  const [mounted, setMounted] = useState(false)
-
-  useEffect(() => setMounted(true), [])
 
   const { data: cartData } = useQuery(GET_CART, {
     variables: { userId: session?.user?.id || '' },
@@ -44,26 +39,6 @@ const Header = () => {
       </Link>
     </>
   )
-
-  const ThemeToggle = ({ mobile = false }) => (
-    <Button
-      variant="ghost"
-      size={mobile ? "sm" : "icon"}
-      onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-      className={mobile ? "justify-start px-2" : ""}
-      aria-label="Toggle theme"
-    >
-      {mounted && (
-        <>
-          <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-          <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-          <span className="sr-only">Toggle theme</span>
-          {mobile && <span className="ml-2">Toggle theme</span>}
-        </>
-      )}
-    </Button>
-  )
-
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
@@ -76,7 +51,6 @@ const Header = () => {
             <NavItems />
           </div>
 
-          <ThemeToggle />
 
           <Link href="/cart" className="relative">
             <ShoppingCart className="w-6 h-6" />
