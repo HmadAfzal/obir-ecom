@@ -20,9 +20,6 @@ export default function Home() {
   if (error) return `Error! ${error.message}`;
 
   const products: Product[] = data?.products || [];
-
-  const { data: session } = useSession()
-  console.log(session)
   return (
     <>
     <Header/>
@@ -70,8 +67,8 @@ export default function Home() {
           <h2 className="text-4xl font-bold mb-6">Featured Products</h2>
           <div className="grid md:grid-cols-3 gap-6">
             {isLoading ? (
-              [1, 2, 3, 4, 5, 6].map(() => (
-                <CardSkeleton />
+              [1, 2, 3, 4, 5, 6].map((index) => (
+                <CardSkeleton key={index} />
               ))
             ) : (
               products.slice(0, 6).map((product) => (

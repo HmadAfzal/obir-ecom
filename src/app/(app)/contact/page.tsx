@@ -42,7 +42,7 @@ export default function ContactPage() {
           <Card>
             <CardHeader>
               <CardTitle>Get in Touch</CardTitle>
-              <CardDescription>We'd love to hear from you. Send us a message and we'll respond as soon as possible.</CardDescription>
+              <CardDescription>We&apos;d love to hear from you. Send us a message and we&apos;ll respond as soon as possible.</CardDescription>
             </CardHeader>
             <CardContent>
               <form onSubmit={handleSubmit} className="space-y-4">

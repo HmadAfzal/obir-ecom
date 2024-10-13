@@ -307,10 +307,10 @@ export default function CheckoutPage() {
                 transition={{ duration: 0.5 }}
               >
                 <p className="mb-4 text-center">
-                  You've reached the Top! 🏔️
+                  You&apos;ve reached the Top! 🏔️
                   Very few make till here
-                  Sadly, these shoes won't be reaching your doorstep. because it is a dummy site 😀
-                  Don't worry, I haven't saved your card details. I am not that sneaky! 🕵️‍♂️
+                  Sadly, these shoes won&apos;t be reaching your doorstep. because it is a dummy site 😀
+                  Don&apos;t worry, I haven&apos;t saved your card details. I am not that sneaky! 🕵️‍♂️
                   Want to see more of my work? Check out my other projects:
                 </p>
                 <Button asChild className="w-full">

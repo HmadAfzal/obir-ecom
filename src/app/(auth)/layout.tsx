@@ -1,4 +1,4 @@
-import { Button, buttonVariants } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
 import type { Metadata } from "next";
 import Link from "next/link";
 export const metadata: Metadata = {

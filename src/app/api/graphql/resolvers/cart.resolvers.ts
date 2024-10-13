@@ -37,7 +37,7 @@ const CartResolvers = {
           throw new Error("Product not found");
         }
     
-        const cartItem = await prisma.cartItem.upsert({
+    await prisma.cartItem.upsert({
           where: {
             userId_productId: {
               userId: user.id,

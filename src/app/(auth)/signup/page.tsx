@@ -1,6 +1,5 @@
 import Link from "next/link";
 import SignupForm from "./components/signup-form";
-import Header from "@/components/globals/header";
 
 
 export default function SignupPage() {
