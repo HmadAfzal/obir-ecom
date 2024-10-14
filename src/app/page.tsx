@@ -33,7 +33,7 @@ export default function Home() {
             <Link href={'/shop'} className={buttonVariants({ variant: "default" })}>
               Shop Now
             </Link>
-            <Link href={'/about'} className={buttonVariants({ variant: "outline" })}>
+            <Link href={'/privacy'} className={buttonVariants({ variant: "outline" })}>
               Learn More
             </Link>
           </div>

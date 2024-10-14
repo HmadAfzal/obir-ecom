@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { ThemeProvider } from "@/components/theme-provider";
 import ClientProvider from "@/context/client-provider";
 import QueryProvider from "@/context/query-provider";
 import { Toaster } from "@/components/ui/sonner"
@@ -20,24 +19,16 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-
-      <body className="antialiased" >
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          enableSystem
-          disableTransitionOnChange
-        >
-        <AuthProvider>
-            <QueryProvider>
-              <ClientProvider>
-                {children}
-                <Toaster />
-              </ClientProvider>
-            </QueryProvider>
-          </AuthProvider>
-        </ThemeProvider>
-      </body>
+      <AuthProvider>
+        <body className="antialiased" >
+          <QueryProvider>
+            <ClientProvider>
+              {children}
+              <Toaster />
+            </ClientProvider>
+          </QueryProvider>
+        </body>
+      </AuthProvider>
     </html>
   );
 }

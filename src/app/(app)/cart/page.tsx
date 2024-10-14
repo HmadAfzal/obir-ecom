@@ -64,7 +64,6 @@ export default function CartPage() {
     <div className="min-h-screen">
       <main className="container mx-auto px-4 py-8">
         <h1 className="text-4xl font-bold mb-8">Your Cart</h1>
-
         {cartItems.length === 0 ? (
           <div className="text-center">
             <p className="mb-4">Your cart is empty.</p>
