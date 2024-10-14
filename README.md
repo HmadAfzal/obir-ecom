@@ -9,8 +9,9 @@
 - **Development:**
   - Nextjs
   - TypeScript
-  - Tailwind CSS
-  - ShadcnUi
+  - Graphql
+  - React query
+  - Apollo graphql
   - PostgreSQL
   - Prisma
 
