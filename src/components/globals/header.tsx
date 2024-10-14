@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { ShoppingCart, User, Menu,} from 'lucide-react'
+import { ShoppingCart, User, Menu, } from 'lucide-react'
 import { signOut, useSession } from 'next-auth/react'
 import { useQuery } from '@apollo/client'
 import { GET_CART } from '@/graphql/queries/cart.query'
@@ -14,6 +14,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import { useRouter } from 'next/navigation'
 
 const Header = () => {
   const { data: session } = useSession()
@@ -23,6 +24,13 @@ const Header = () => {
     variables: { userId: session?.user?.id || '' },
     skip: !session?.user?.id,
   })
+  const router = useRouter()
+
+  const handleSignout = async () => {
+    await signOut();
+    router.push('/login')
+
+  }
 
   const cartItemCount = cartData?.getCart?.totalQuantity || 0
 
@@ -45,7 +53,7 @@ const Header = () => {
         <Link href="/" className="flex items-center space-x-2">
           <span className="text-2xl font-extrabold sm:text-3xl">Obir</span>
         </Link>
-        
+
         <div className="flex items-center space-x-4 sm:space-x-6">
           <div className="hidden md:flex items-center space-x-6">
             <NavItems />
@@ -70,7 +78,7 @@ const Header = () => {
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
-                <DropdownMenuItem onClick={() => signOut()}>
+                <DropdownMenuItem onClick={handleSignout}>
                   Log out
                 </DropdownMenuItem>
               </DropdownMenuContent>

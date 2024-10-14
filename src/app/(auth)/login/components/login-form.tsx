@@ -66,7 +66,7 @@ const LoginForm = () => {
                     type="email"
                     {...register('email')}
                     required
-                    className="bg-secondary border-zinc-500"
+                    className="bg-secondary border-zinc-200"
                 />
                 {errors.email && (
                     <p className="text-red-500 text-sm mt-1">
@@ -84,7 +84,7 @@ const LoginForm = () => {
                         type={showPassword ? "text" : "password"}
                         {...register('password')}
                         required
-                        className="bg-secondary border-zinc-500 pr-10"
+                        className="bg-secondary border-zinc-200 pr-10"
                     />
                     <button
                         type="button"

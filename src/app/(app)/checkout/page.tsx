@@ -1,5 +1,6 @@
 'use client'
-import { useState } from 'react'
+
+import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { useSession } from 'next-auth/react'
 import { useQuery } from '@apollo/client'
@@ -19,6 +20,7 @@ import {
 import { motion } from "framer-motion"
 import confetti from 'canvas-confetti'
 import { Loader2, Github } from 'lucide-react'
+import Link from 'next/link'
 
 interface CartItem {
   id: string
@@ -32,11 +34,16 @@ interface CartItem {
 }
 
 export default function CheckoutPage() {
-  const { data: session } = useSession();
-  const userId = session?.user?.id || '';
+  const { data: session, status } = useSession();
+  const [isClient, setIsClient] = useState(false)
+
+  useEffect(() => {
+    setIsClient(true)
+  }, [])
+
   const { loading, error, data } = useQuery(GET_CART, {
-    variables: { userId },
-    skip: !userId,
+    variables: { userId: session?.user?.id },
+    skip: !session?.user?.id,
   })
 
   const [formData, setFormData] = useState({
@@ -80,18 +87,6 @@ export default function CheckoutPage() {
     const errors = validateForm()
     if (errors.length > 0) {
       errors.forEach(error => toast.error(error))
-      setFormData({
-        firstName: '',
-        lastName: '',
-        email: '',
-        address: '',
-        city: '',
-        country: '',
-        postalCode: '',
-        cardNumber: '',
-        cardExpiry: '',
-        cardCVC: '',
-      })
     } else {
       setIsSubmitting(true)
       await new Promise(resolve => setTimeout(resolve, 2000))
@@ -105,8 +100,32 @@ export default function CheckoutPage() {
     }
   }
 
+  if (!isClient) {
+    return null // Prevent SSR issues
+  }
+
+  if (status === 'loading') {
+    return <div className='min-h-screen flex items-center justify-center'><Loader2 className='animate-spin size-5'/></div>
+  }
+
+  if (status === 'unauthenticated') {
+    return (
+      <div className='min-h-screen flex flex-col items-center justify-center space-y-4'>
+        <div className='text-xl font-semibold'>You need to login first 😑</div>
+        <div className='space-x-4'>
+          <Button asChild>
+            <Link href="/login">Login</Link>
+          </Button>
+          <Button asChild variant="outline">
+            <Link href="/">Home</Link>
+          </Button>
+        </div>
+      </div>
+    )
+  }
+
   if (loading) return <div className='min-h-screen flex items-center justify-center'><Loader2 className='animate-spin size-5'/></div>
-  if (error) return <div>Error: {error.message}</div>
+  if (error) return <div className='min-h-screen flex items-center justify-center text-red-500'>Error: {error.message}</div>
 
   const cartItems: CartItem[] = data?.getCart?.items || []
   const total = cartItems.reduce((sum, item) => sum + item.product.price * item.quantity, 0)
@@ -308,9 +327,9 @@ export default function CheckoutPage() {
               >
                 <p className="mb-4 text-center">
                   You&apos;ve reached the Top! 🏔️
-                  Very few make till here
-                  Sadly, these shoes won&apos;t be reaching your doorstep. because it is a dummy site 😀
-                  Don&apos;t worry, I haven&apos;t saved your card details. I am not that sneaky! 🕵️‍♂️
+                  Very few make it this far.
+                  Sadly, these shoes won&apos;t be reaching your doorstep because this is a dummy site 😀
+                  Don&apos;t worry, I haven&apos;t saved your card details. I&apos;m not that sneaky! 🕵️‍♂️
                   Want to see more of my work? Check out my other projects:
                 </p>
                 <Button asChild className="w-full">

@@ -16,14 +16,14 @@ export default function NewsletterSection() {
   return (
     <section className="py-32 px-4">
       <div className="container mx-auto max-w-4xl">
-        <div className="flex justify-between items-start mb-6">
+        <div className="flex justify-between items-center mb-6">
           <h2 className="text-4xl font-bold">NEWSLETTER</h2>
           <div className="flex gap-4">
             <a href="https://instagram.com/llha.x" target="_blank" rel="noopener noreferrer" aria-label="Follow us on Instagram">
-              <Instagram className="w-6 h-6" />
+              <Instagram className="size-5" />
             </a>
             <a href="https://github.com/HmadAfzal" target="_blank" rel="noopener noreferrer" aria-label="Follow us on Github">
-              <GitHubLogoIcon className="w-6 h-6" />
+              <GitHubLogoIcon className="size-5" />
             </a>
           </div>
         </div>

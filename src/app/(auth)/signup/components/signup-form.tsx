@@ -56,7 +56,7 @@ const SignupForm = () => {
         type="email"
         {...register('email')}
         required
-        className="bg-secondary border-zinc-500"
+        className="bg-secondary border-zinc-200"
       />
       {errors.email && <p className="text-red-500">{errors.email.message}</p>}
     </div>
@@ -69,7 +69,7 @@ const SignupForm = () => {
         type="text"
         {...register('username')}
         required
-        className="bg-secondary border-zinc-500"
+        className="bg-secondary border-zinc-200"
       />
       {errors.username && <p className="text-red-500">{errors.username.message}</p>}
     </div>
@@ -83,7 +83,7 @@ const SignupForm = () => {
           type={showPassword ? "text" : "password"}
           {...register('password')}
           required
-          className="bg-secondary border-zinc-500"
+          className="bg-secondary border-zinc-200"
         />
         <button
           type="button"
