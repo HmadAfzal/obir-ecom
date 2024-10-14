@@ -9,7 +9,7 @@ import AuthProvider from "@/context/auth-provider";
 
 export const metadata: Metadata = {
   title: "Obir",
-  description: "Style tour feet",
+  description: "Style your feet",
 };
 
 export default function RootLayout({
